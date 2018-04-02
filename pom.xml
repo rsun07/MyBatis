@@ -10,11 +10,11 @@
   <name>mybatis</name>
 
   <modules>
-    <module>helloworld</module>
+    <module>single-table</module>
   </modules>
 
   <properties>
-    <mybatis.version>5.1.0.Final</mybatis.version>
+    <mybatis.version>3.3.0</mybatis.version>
     <mysql.version>5.1.38</mysql.version>
     <testng.version>6.8</testng.version>
   </properties>
@@ -25,6 +25,13 @@
       <artifactId>mysql-connector-java</artifactId>
       <version>${mysql.version}</version>
     </dependency>
+
+    <dependency>
+      <groupId>org.mybatis</groupId>
+      <artifactId>mybatis</artifactId>
+      <version>${mybatis.version}</version>
+    </dependency>
+
 
     <!--Test Dependencies-->
     <dependency>
