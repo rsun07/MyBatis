@@ -27,6 +27,10 @@
         </environment>
     </environments>
 
+    <typeAliases>
+        <typeAlias type="pers.xiaoming.mybatis.entity.Student" alias="Student"/>
+    </typeAliases>
+
     <mappers>
         <mapper resource="mapper.xml"/>
     </mappers>

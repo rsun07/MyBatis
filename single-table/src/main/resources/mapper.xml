@@ -2,6 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper>
+<mapper namespace="single_table">
 
+    <insert id="insertStudent" parameterType="Student">
+        insert into student(name, age, score) values (#{name},#{score })
+    </insert>
 </mapper>
