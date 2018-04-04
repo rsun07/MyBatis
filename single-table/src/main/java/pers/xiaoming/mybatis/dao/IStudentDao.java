@@ -5,7 +5,7 @@ import pers.xiaoming.mybatis.entity.Student;
 import java.util.List;
 
 public interface IStudentDao {
-    void create(Student student);
+    int create(Student student);
 
     Student get(int id);
 

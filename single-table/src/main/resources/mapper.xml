@@ -4,7 +4,29 @@
 
 <mapper namespace="single_table">
 
-    <insert id="insertStudent" parameterType="Student">
-        insert into student(name, age, score) values (#{name},#{score })
+    <!--System will read the Class name from the typeAliases and use the Class name as Alias-->
+    <!--<insert id="insertStudent" parameterType="Student">-->
+    <insert id="insertStudent">
+        insert into student(name, score) values (#{name},#{score})
+        <!--keyProperty means the name of the key in the Student Class-->
+
+        <!--order means the id is generated before/after the insert-->
+            <!--MySQL insert before generate new key, Oracle generate key first-->
+            <!--In xml config, the order is optional, but in annotation development, it's mandatory-->
+        <selectKey resultType="int" keyProperty="id" order="AFTER">
+            select @@identity
+        </selectKey>
     </insert>
+
+    <delete id="deleteStudent" parameterType="Student">
+        <!--# is just a placeholder, any name inside is ok-->
+        delete from student where id=#{id}
+    </delete>
+
+    <update id="updateStudent" parameterType="Student">
+        update student set name=#{name}, score=#{score} where id=#{id}
+    </update>
+
+
+
 </mapper>
