@@ -14,11 +14,20 @@ public class CURDTest {
         int id = dao.create(student);
         // student instance already been set id by MyBatis
         Assert.assertEquals(id, student.getId());
+        validateWithGet(student);
     }
 
     @Test(dependsOnMethods = "testCreate")
     public void testUpdate() {
         student.setScore(98.5);
         dao.update(student);
+        validateWithGet(student);
+    }
+
+
+    // test Get One
+    private void validateWithGet(Student student) {
+        Student studentReturn = dao.get(student.getId());
+        Assert.assertEquals(studentReturn, student);
     }
 }
