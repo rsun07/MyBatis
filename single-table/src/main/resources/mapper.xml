@@ -38,7 +38,7 @@
     </select>
 
     <delete id="truncateStudentTable">
-        truncate database student
+        truncate table student
     </delete>
 
 </mapper>

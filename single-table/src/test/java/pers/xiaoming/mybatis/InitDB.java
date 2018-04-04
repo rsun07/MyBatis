@@ -1,3 +1,5 @@
+package pers.xiaoming.mybatis;
+
 import org.apache.ibatis.session.SqlSession;
 import org.testng.annotations.BeforeSuite;
 import pers.xiaoming.mybatis.dao.SessionManager;
