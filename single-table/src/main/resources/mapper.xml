@@ -27,6 +27,13 @@
         update student set name=#{name}, score=#{score} where id=#{id}
     </update>
 
+    <!-- resultType also use Alias-->
+    <select id="selectAllStudent" resultType="Student">
+        select id,name,score from student
+    </select>
 
+    <select id="selectStudent" resultType="Student">
+        select id,name,score from student where id=#{id}
+    </select>
 
 </mapper>
