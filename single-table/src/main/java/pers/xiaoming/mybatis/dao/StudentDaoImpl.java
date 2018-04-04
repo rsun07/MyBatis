@@ -18,7 +18,7 @@ public class StudentDaoImpl implements IStudentDao {
 
     public Student get(int id) {
         try (SqlSession session = SessionManager.getSession()) {
-            return session.selectOne("selectStudent", id);
+            return session.selectOne("select", id);
         }
     }
 
