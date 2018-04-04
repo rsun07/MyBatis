@@ -27,6 +27,7 @@
         update student set name=#{name}, score=#{score} where id=#{id}
     </update>
 
+    <!--resultType cannot be ignore-->
     <!-- resultType also use Alias-->
     <select id="selectAllStudent" resultType="Student">
         select id,name,score from student
@@ -35,5 +36,9 @@
     <select id="selectStudent" resultType="Student">
         select id,name,score from student where id=#{id}
     </select>
+
+    <delete id="truncateStudentTable">
+        truncate database student
+    </delete>
 
 </mapper>

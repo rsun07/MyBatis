@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="hibernate_test">
+    <test name="Initial Dao">
+        <classes>
+            <class name="pers.xiaoming.mybatis.InitDB"/>
+        </classes>
+    </test>
+
+    <test name="Hello World Student CURD Test">
+        <classes>
+            <class name="pers.xiaoming.mybatis.dao.CURDTest"/>
+        </classes>
+    </test>
+
+</suite>
