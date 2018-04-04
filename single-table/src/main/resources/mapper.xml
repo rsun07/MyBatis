@@ -29,7 +29,7 @@
 
     <!--resultType cannot be ignore-->
     <!-- resultType also use Alias-->
-    <select id="selectAllStudent" resultType="Student">
+    <select id="selectAllStudents" resultType="Student">
         select id,name,score from student
     </select>
 

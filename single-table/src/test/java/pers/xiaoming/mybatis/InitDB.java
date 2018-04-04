@@ -7,6 +7,7 @@ import pers.xiaoming.mybatis.dao.SessionManager;
 import pers.xiaoming.mybatis.dao.StudentDaoImpl;
 import pers.xiaoming.mybatis.entity.Student;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -20,6 +21,9 @@ public class InitDB {
 
     private static List<Student> students;
 
+    public static List<Student> getStudents() {
+        return students;
+    }
 
     @BeforeSuite
     public static void InitDB() {
@@ -28,8 +32,10 @@ public class InitDB {
             session.commit();
         }
 
+        students = new ArrayList<>();
         IStudentDao dao = new StudentDaoImpl();
         Random random = new Random();
+
         for (int i = 0; i < NUM_OF_DATA_GENERATE; i++) {
             Student student = Student.builder()
                     .name(NAME_PREFIX + i)
@@ -39,5 +45,4 @@ public class InitDB {
             dao.create(student);
         }
     }
-
 }

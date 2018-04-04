@@ -7,7 +7,7 @@
         </classes>
     </test>
 
-    <test name="Hello World Student CURD Test">
+    <test name="Hello World CURD test">
         <classes>
             <class name="pers.xiaoming.mybatis.dao.CURDTest"/>
         </classes>

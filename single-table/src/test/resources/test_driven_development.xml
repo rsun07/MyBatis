@@ -11,9 +11,9 @@
         </classes>
     </test>
 
-    <test name="Select Tests for SQL, HQL, QBC">
+    <test name="get all tests">
         <classes>
-            <class name="pers.xiaoming.mybatis.dao.CURDTest"/>
+            <class name="pers.xiaoming.mybatis.dao.GetAllTest"/>
         </classes>
     </test>
 </suite>
