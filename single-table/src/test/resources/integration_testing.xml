@@ -13,4 +13,16 @@
         </classes>
     </test>
 
+    <test name="get all tests">
+        <classes>
+            <class name="pers.xiaoming.mybatis.dao.GetAllTest"/>
+        </classes>
+    </test>
+
+    <test name="get by fuzzy name">
+        <classes>
+            <class name="pers.xiaoming.mybatis.dao.GetByFuzzyNameTest"/>
+        </classes>
+    </test>
+
 </suite>
