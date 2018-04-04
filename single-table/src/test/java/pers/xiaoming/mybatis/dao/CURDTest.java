@@ -24,10 +24,15 @@ public class CURDTest {
         validateWithGet(student);
     }
 
+    @Test(dependsOnMethods = "testUpdate")
+    public void testDelete() {
+        dao.delete(student.getId());
+        validateWithGet(null);
+    }
 
     // test Get One
-    private void validateWithGet(Student student) {
+    private void validateWithGet(Student studentExpect) {
         Student studentReturn = dao.get(student.getId());
-        Assert.assertEquals(studentReturn, student);
+        Assert.assertEquals(studentReturn, studentExpect);
     }
 }

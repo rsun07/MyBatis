@@ -18,7 +18,7 @@ public class StudentDaoImpl implements IStudentDao {
 
     public Student get(int id) {
         try (SqlSession session = SessionManager.getSession()) {
-            return session.selectOne("selectAllStudents", id);
+            return session.selectOne("selectStudent", id);
         }
     }
 
@@ -45,6 +45,9 @@ public class StudentDaoImpl implements IStudentDao {
     }
 
     public void delete(int id) {
-
+        try (SqlSession session = SessionManager.getSession()) {
+            session.update("deleteStudent", id);
+            session.commit();
+        }
     }
 }
