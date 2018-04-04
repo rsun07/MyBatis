@@ -37,6 +37,13 @@ public class StudentDaoImpl implements IStudentDao {
         }
     }
 
+    public List<Student> getByFuzzyName(String fuzzyName) {
+        try (SqlSession session = SessionManager.getSession()) {
+            List<Student> students = session.selectList("selectByFuzzyName", fuzzyName);
+            return students;
+        }
+    }
+
     public void update(Student student) {
         try (SqlSession session = SessionManager.getSession()) {
             session.update("updateStudent", student);

@@ -8,13 +8,15 @@ import java.util.Map;
 public interface IStudentDao {
     int create(Student student);
 
+    void update(Student student);
+
     Student get(int id);
 
     List<Student> getAll();
 
     Map<String, Object> getAll(String fieldName);
 
-    void update(Student student);
+    List<Student> getByFuzzyName(String fuzzyName);
 
     void delete(int id);
 }
