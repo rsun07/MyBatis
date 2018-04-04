@@ -11,13 +11,7 @@
         </layout>
     </appender>
 
-    <!-- Send logs to both console and file audit -->
-    <logger name="pers.xiaoming.notebook" level="debug"
-            additivity="false">
-        <appender-ref ref="STDOUT" />
-    </logger>
-
-    <logger name="pers.xiaoming.mybatis.mapper.mapper.xml" level="debug"
+    <logger name="pers.xiaoming.mybatis.mapper" level="debug"
             additivity="false">
         <appender-ref ref="STDOUT" />
     </logger>
