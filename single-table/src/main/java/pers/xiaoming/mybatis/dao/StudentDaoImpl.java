@@ -8,10 +8,11 @@ import java.util.List;
 public class StudentDaoImpl implements IStudentDao {
 
     public int create(Student student) {
-        SqlSession session = SessionManager.getSession();
-        session.insert("insertStudent", student);
-        session.commit();
-        return student.getId();
+        try (SqlSession session = SessionManager.getSession()) {
+            session.insert("insertStudent", student);
+            session.commit();
+            return student.getId();
+        }
     }
 
     public Student get(int id) {
@@ -23,9 +24,10 @@ public class StudentDaoImpl implements IStudentDao {
     }
 
     public void update(Student student) {
-        SqlSession session = SessionManager.getSession();
-        session.update("updateStudent", student);
-        session.commit();
+        try (SqlSession session = SessionManager.getSession()) {
+            session.update("updateStudent", student);
+            session.commit();
+        }
     }
 
     public void delete(int id) {
