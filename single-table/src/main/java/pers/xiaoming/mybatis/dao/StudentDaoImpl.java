@@ -23,7 +23,9 @@ public class StudentDaoImpl implements IStudentDao {
     }
 
     public void update(Student student) {
-
+        SqlSession session = SessionManager.getSession();
+        session.update("updateStudent", student);
+        session.commit();
     }
 
     public void delete(int id) {

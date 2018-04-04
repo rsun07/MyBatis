@@ -18,12 +18,12 @@
         </selectKey>
     </insert>
 
-    <delete id="deleteStudent" parameterType="Student">
+    <delete id="deleteStudent">
         <!--# is just a placeholder, any name inside is ok-->
         delete from student where id=#{id}
     </delete>
 
-    <update id="updateStudent" parameterType="Student">
+    <update id="updateStudent">
         update student set name=#{name}, score=#{score} where id=#{id}
     </update>
 
