@@ -9,5 +9,7 @@ public interface IStudentConDao {
 
     List<Student> getByFuzzyName(String fuzzyName);
 
+    List<Student> getScoreHigherThanGivenStudent(Student student);
+
     List<Student> getNameLikeAndScoreHigherThanGivenStudent(String fuzzyName, Student student);
 }

@@ -21,7 +21,7 @@
 
     <test name="get by fuzzy name">
         <classes>
-            <class name="pers.xiaoming.mybatis.dao.GetByFuzzyNameTest"/>
+            <class name="pers.xiaoming.mybatis.dao.AdvancedQueryTest"/>
         </classes>
     </test>
 

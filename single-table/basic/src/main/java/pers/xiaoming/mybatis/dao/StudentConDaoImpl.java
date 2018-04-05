@@ -10,7 +10,15 @@ import java.util.Map;
 public class StudentConDaoImpl implements IStudentConDao {
     public List<Student> getByFuzzyName(String fuzzyName) {
         try (SqlSession session = SessionManager.getSession()) {
-            return session.selectList("single_table.selectByFuzzyName", fuzzyName);
+            return session.selectList("advanced_single_table_query.selectByFuzzyName", fuzzyName);
+        }
+    }
+
+    public List<Student> getScoreHigherThanGivenStudent(Student student) {
+        try (SqlSession session = SessionManager.getSession()) {
+            // MyBatis Executor will get the fields from student
+            // and inject into SQL query
+            return session.selectList("selectScoreHigherThanGivenStudent", student);
         }
     }
 

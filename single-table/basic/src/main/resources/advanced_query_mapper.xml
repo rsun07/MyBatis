@@ -14,4 +14,9 @@
         <!--select id,name,score from student where name like '%{#value}%'-->
     </select>
 
+    <select id="selectScoreHigherThanGivenStudent" resultType="Student">
+        <!--MyBatis will auto get the score field from the student parameter passed in-->
+        select id,name,score from student where score > #{score}
+    </select>
+
 </mapper>

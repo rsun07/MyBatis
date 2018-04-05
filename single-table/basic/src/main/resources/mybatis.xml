@@ -36,6 +36,7 @@
 
     <mappers>
         <mapper resource="mapper.xml"/>
+        <mapper resource="advanced_query_mapper.xml"/>
     </mappers>
 
 </configuration>
