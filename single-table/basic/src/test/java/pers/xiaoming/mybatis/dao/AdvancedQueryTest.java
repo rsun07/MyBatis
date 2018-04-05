@@ -19,10 +19,24 @@ public class AdvancedQueryTest {
     }
 
     @Test
-    public void testStudentAsParameter() {
+    public void testStudentAsParameterToInjectSQL() {
         Student student = new Student("Mike", 79);
 
         List<Student> students = dao.getScoreHigherThanGivenStudent(student);
+
+        Assert.assertEquals(students, InitDB.getStudents());
+    }
+
+
+    /*
+    23:18:57.401 [main] DEBUG advanced_single_table_query.selectNameLikeAndScoreHigherThanGivenStudent - ==>  Preparing: select id,name,score from student where name like '%' ? '%' and score > ?
+    23:18:57.401 [main] DEBUG advanced_single_table_query.selectNameLikeAndScoreHigherThanGivenStudent - ==> Parameters: John(String), 79.0(Double)
+     */
+    @Test
+    public void testMapAsParameterToInjectSQL() {
+        Student student = new Student("Mike", 79);
+
+        List<Student> students = dao.getNameLikeAndScoreHigherThanGivenStudent("John", student);
 
         Assert.assertEquals(students, InitDB.getStudents());
     }

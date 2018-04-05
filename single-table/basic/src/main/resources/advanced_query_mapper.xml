@@ -19,4 +19,10 @@
         select id,name,score from student where score > #{score}
     </select>
 
+    <select id="selectNameLikeAndScoreHigherThanGivenStudent" resultType="Student">
+        select id,name,score from student
+        where name like '%' #{nameLike} '%'
+        and score > #{stu.score}
+    </select>
+
 </mapper>

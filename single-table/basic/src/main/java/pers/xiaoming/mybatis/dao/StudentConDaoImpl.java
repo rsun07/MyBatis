@@ -25,7 +25,7 @@ public class StudentConDaoImpl implements IStudentConDao {
     public List<Student> getNameLikeAndScoreHigherThanGivenStudent(String fuzzyName, Student student) {
         Map<String, Object> map = new HashMap<>();
 
-        map.put("name", fuzzyName);
+        map.put("nameLike", fuzzyName);
         map.put("stu", student);
 
         try (SqlSession session = SessionManager.getSession()) {
