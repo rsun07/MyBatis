@@ -13,14 +13,33 @@ import java.util.Arrays;
 import java.util.List;
 
 public class DynamicSQLTest {
-    private Student student = new Student("John", 88.5);
     private static SqlSession session;
     private static IStudentDaoDynamicSQL dao;
+
+    private static Student John0;
+    private static Student John1;
+
+    private static Student higherScoreStu;
+    private static Student lowerScoreStu;
+
 
     @BeforeClass
     public static void setup() {
         session = SessionManager.getSession();
         dao = session.getMapper(IStudentDaoDynamicSQL.class);
+
+        List<Student> initialedStudent = InitDB.getStudents();
+        John0 = initialedStudent.get(0);
+        John1 = initialedStudent.get(1);
+
+        if (John0.getScore() > John1.getScore()) {
+            higherScoreStu = John0;
+            lowerScoreStu = John1;
+        } else {
+            higherScoreStu = John1;
+            lowerScoreStu = John0;
+        }
+
     }
 
     @AfterClass
@@ -31,39 +50,46 @@ public class DynamicSQLTest {
     }
 
     @Test(dataProvider = "test_if_data_provider")
-    public void testIf(Student query, List<Student> expected) {
-        List<Student> studentReturn = dao.selectStudentIf(query);
+    public void testDynamicSQLIf(Student query, List<Student> expected) {
+        List<Student> studentReturn = dao.selectDynamicSQLIf(query);
         Assert.assertEquals(studentReturn, expected);
     }
 
     @DataProvider(name = "test_if_data_provider")
     public Object[][] testIfDataProvider() {
-        List<Student> initialedStudent = InitDB.getStudents();
-        Student John0 = initialedStudent.get(0);
-        Student John1 = initialedStudent.get(1);
-
-        Student higherScore;
-        Student lowerScore;
-
-        if (John0.getScore() > John1.getScore()) {
-            higherScore = John0;
-            lowerScore = John1;
-        } else {
-            higherScore = John1;
-            lowerScore = John0;
-        }
-
         return new Object[][] {
                 // only name
                 {new Student("John0"), Arrays.asList(John0)},
                 // only score
-                {new Student(lowerScore.getScore()), Arrays.asList(higherScore)},
+                {new Student(lowerScoreStu.getScore()), Arrays.asList(higherScoreStu)},
                 // both params
-                {new Student("John", lowerScore.getScore()), Arrays.asList(higherScore)},
+                {new Student("John", lowerScoreStu.getScore()), Arrays.asList(higherScoreStu)},
                 // return multiple rows
-                {new Student("John", lowerScore.getScore() - 1), Arrays.asList(John0, John1)},
+                {new Student("John", lowerScoreStu.getScore() - 1), Arrays.asList(John0, John1)},
                 // none params
                 {new Student(), Arrays.asList(John0, John1)}
+        };
+    }
+
+    @Test(dataProvider = "test_choose_data_provider")
+    public void testDynamicSQLChoose(Student query, List<Student> expected) {
+        List<Student> studentReturn = dao.selectDynamicSQLChoose(query);
+        Assert.assertEquals(studentReturn, expected);
+    }
+
+    @DataProvider(name = "test_choose_data_provider")
+    public Object[][] testChooseDataProvider() {
+        return new Object[][] {
+                // only name will apply, like switch
+                // if both name and score apply, should be no result
+                {new Student("John", higherScoreStu.getScore()), Arrays.asList(John0, John1)},
+
+                // only score
+                // like switch, no name, then go to score condition
+                {new Student(lowerScoreStu.getScore()), Arrays.asList(higherScoreStu)},
+
+                // none params, go to otherwise
+                {new Student(), Arrays.asList()}
         };
     }
 }

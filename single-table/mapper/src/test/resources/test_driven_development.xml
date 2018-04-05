@@ -13,7 +13,7 @@
 
         <test name="dynamic sql test">
                 <classes>
-                        <class name="pers.xiaoming.mybatis.dao.DynamicMapperTest"/>
+                        <class name="pers.xiaoming.mybatis.dao.DynamicSQLTest"/>
                 </classes>
         </test>
 </suite>

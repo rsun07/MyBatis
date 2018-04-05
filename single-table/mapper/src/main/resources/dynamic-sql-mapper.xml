@@ -5,7 +5,7 @@
 <!--Here should be the interface path-->
 <mapper namespace="pers.xiaoming.mybatis.dao.IStudentDaoDynamicSQL">
 
-    <select id="selectStudentIf" resultMap="StudentMapper">
+    <select id="selectDynamicSQLIf" resultMap="StudentMapper">
         select t_id,t_name,t_score from t_student
         <where>
             <!--&& cannot be used, if needed, replace to &amp; -->
@@ -19,6 +19,24 @@
             <if test="score > 0 and score &lt; 100">
                 and t_score > #{score}
             </if>
+        </where>
+    </select>
+
+    <select id="selectDynamicSQLChoose" resultMap="StudentMapper">
+        select t_id,t_name,t_score from t_student
+        <where>
+            <choose>
+                <when test="name != null and name !=''">
+                    and t_name like '%' #{name} '%'
+                </when>
+                <when test="score > 0 and score &lt; 100">
+                    and t_score > #{score}
+                </when>
+                <otherwise>
+                    and t_score > 100
+                </otherwise>
+            </choose>
+
         </where>
     </select>
 

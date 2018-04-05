@@ -6,5 +6,7 @@ import java.util.List;
 
 public interface IStudentDaoDynamicSQL {
 
-    List<Student> selectStudentIf(Student student);
+    List<Student> selectDynamicSQLIf(Student student);
+
+    List<Student> selectDynamicSQLChoose(Student student);
 }
