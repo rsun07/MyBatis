@@ -26,6 +26,11 @@
 
 
     <select id="selectStudent" resultMap="StudentMapper">
+        <!--Two ways to solve DB table attribute names different from Java Class field names-->
+        <!--1. using alias like the comment line-->
+        <!--select t_id id,t_name name,t_score score from t_student where t_id=#{id}-->
+
+        <!--2. using resultMap-->
         select t_id id,t_name name,t_score score from t_student where t_id=#{id}
     </select>
 
