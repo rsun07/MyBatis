@@ -4,16 +4,10 @@
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>pers.xiaoming.mybatis</groupId>
-    <artifactId>mybatis</artifactId>
+    <artifactId>single-table</artifactId>
     <version>1.0-SNAPSHOT</version>
   </parent>
 
-  <packaging>pom</packaging>
-
-  <modules>
-    <module>basic</module>
-  </modules>
-
-  <artifactId>single-table</artifactId>
-  <name>single-table</name>
+  <artifactId>basic</artifactId>
+  <name>basic</name>
 </project>
