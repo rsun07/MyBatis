@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--Here should be the interface path-->
+<mapper namespace="pers.xiaoming.mybatis.dao.IStudentDaoDynamicSQL">
+
+    <select id="selectStudentIf" resultMap="StudentMapper">
+        select t_id,t_name,t_score from t_student
+        <where>
+            <!--&& cannot be used, if needed, replace to &amp; -->
+            <if test="name != null and name !=''">
+                <!--and cannot be omit here!-->
+                and t_name like '%' #{name} '%'
+            </if>
+
+            <!-- '<' cannot be used in html-->
+            <!--should be replaced into &lt;-->
+            <if test="score > 0 and score &lt; 100">
+                and t_score > #{score}
+            </if>
+        </where>
+    </select>
+
+    <resultMap id="StudentMapper" type="Student">
+        <id column="t_id" property="id"/>
+        <result column="t_name" property="name"/>
+        <result column="t_score" property="score"/>
+    </resultMap>
+
+</mapper>

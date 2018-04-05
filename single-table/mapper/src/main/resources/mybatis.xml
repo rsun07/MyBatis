@@ -26,6 +26,7 @@
     <mappers>
         <mapper resource="alias-mapper.xml"/>
         <mapper resource="dynamic-proxy-mapper.xml"/>
+        <mapper resource="dynamic-sql-mapper.xml"/>
     </mappers>
 
 </configuration>

@@ -43,7 +43,7 @@ public class InitDB {
         for (int i = 0; i < NUM_OF_DATA_GENERATE; i++) {
             Student student = Student.builder()
                     .name(NAME_PREFIX + i)
-                    .score(SCORE_START + random.nextInt((int)(100 - SCORE_START)))
+                    .score(SCORE_START + random.nextInt((int)(100 - SCORE_START)) + random.nextDouble())
                     .build();
             students.add(student);
             dao.create(student);

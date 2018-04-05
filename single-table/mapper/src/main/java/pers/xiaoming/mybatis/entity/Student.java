@@ -14,6 +14,14 @@ public class Student {
     private String name;
     private double score;
 
+    public Student(String name) {
+        this.name = name;
+    }
+
+    public Student(double score) {
+        this.score = score;
+    }
+
     public Student(String name, double score) {
         this.name = name;
         this.score = score;

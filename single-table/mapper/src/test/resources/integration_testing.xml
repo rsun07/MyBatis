@@ -13,4 +13,10 @@
         </classes>
     </test>
 
+    <test name="dynamic proxy mapper test">
+        <classes>
+            <class name="pers.xiaoming.mybatis.dao.DynamicMapperTest"/>
+        </classes>
+    </test>
+
 </suite>
