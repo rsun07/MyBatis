@@ -2,22 +2,32 @@ package pers.xiaoming.mybatis.dao;
 
 import org.apache.ibatis.session.SqlSession;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pers.xiaoming.mybatis.entity.Student;
 
 public class DynamicMapperTest {
     private Student student = new Student("John", 88.5);
+    private static SqlSession session;
     private static IStudentDaoDynamicProxy dao;
 
     @BeforeClass
     public static void setup() {
-        SqlSession session = SessionManager.getSession();
+        session = SessionManager.getSession();
         dao = session.getMapper(IStudentDaoDynamicProxy.class);
         dao.truncateTStudentTable();
     }
 
-    @Test
+    @AfterClass
+    public static void clean() {
+        if (session != null) {
+            session.close();
+        }
+    }
+
+
+        @Test
     public void testCreate() {
         Assert.assertEquals(student.getId(), 0);
         int id = dao.insertStudent(student);
