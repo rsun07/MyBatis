@@ -7,7 +7,8 @@ import java.util.List;
 import java.util.Map;
 
 public class StudentDaoImpl implements IStudentDao {
-
+    // ### Cause: java.lang.IllegalArgumentException: insertStudent is ambiguous in Mapped Statements collection
+    // (try using the full name including the namespace, or rename one of the entries)
     public int create(Student student) {
         try (SqlSession session = SessionManager.getSession()) {
             session.insert("single_table.insertStudent", student);

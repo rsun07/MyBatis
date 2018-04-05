@@ -24,7 +24,8 @@
     </environments>
 
     <mappers>
-        <mapper resource="mapper.xml"/>
+        <mapper resource="alias-mapper.xml"/>
+        <mapper resource="dynamic-proxy-mapper.xml"/>
     </mappers>
 
 </configuration>

@@ -13,4 +13,6 @@ public interface IStudentDao {
     Student get(int id);
 
     void delete(int id);
+
+    void truncateTable();
 }
