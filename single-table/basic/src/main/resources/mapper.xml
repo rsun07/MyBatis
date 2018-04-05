@@ -37,16 +37,6 @@
         select id,name,score from student where id=#{id}
     </select>
 
-    <select id="selectByFuzzyName" resultType="Student">
-        select id,name,score from student where name like concat('%', #{name}, '%')
-
-        <!--This will also use PreparedStatement-->
-        <!--select id,name,score from student where name like  '%' #{name} '%'-->
-
-        <!--This won't use PreparedStatement-->
-        <!--select id,name,score from student where name like '%{#value}%'-->
-    </select>
-
     <delete id="truncateStudentTable">
         truncate table student
     </delete>

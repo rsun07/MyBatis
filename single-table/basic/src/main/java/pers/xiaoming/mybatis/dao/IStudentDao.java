@@ -16,7 +16,5 @@ public interface IStudentDao {
 
     Map<String, Object> getAll(String fieldName);
 
-    List<Student> getByFuzzyName(String fuzzyName);
-
     void delete(int id);
 }

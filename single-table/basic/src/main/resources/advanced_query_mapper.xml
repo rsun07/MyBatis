@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="advanced_single_table_query">
+
+    <select id="selectByFuzzyName" resultType="Student">
+        select id,name,score from student where name like concat('%', #{name}, '%')
+
+        <!--This will also use PreparedStatement-->
+        <!--select id,name,score from student where name like  '%' #{name} '%'-->
+
+        <!--This won't use PreparedStatement-->
+        <!--select id,name,score from student where name like '%{#value}%'-->
+    </select>
+
+</mapper>

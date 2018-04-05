@@ -38,13 +38,6 @@ public class StudentDaoImpl implements IStudentDao {
         }
     }
 
-    public List<Student> getByFuzzyName(String fuzzyName) {
-        try (SqlSession session = SessionManager.getSession()) {
-            List<Student> students = session.selectList("single_table.selectByFuzzyName", fuzzyName);
-            return students;
-        }
-    }
-
     public void update(Student student) {
         try (SqlSession session = SessionManager.getSession()) {
             session.update("single_table.updateStudent", student);
@@ -54,7 +47,11 @@ public class StudentDaoImpl implements IStudentDao {
 
     public void delete(int id) {
         try (SqlSession session = SessionManager.getSession()) {
+            // session.delete("single_table.deleteStudent", id);
+
+            // the library implementation create() and delete() all call update()
             session.update("single_table.deleteStudent", id);
+
             session.commit();
         }
     }

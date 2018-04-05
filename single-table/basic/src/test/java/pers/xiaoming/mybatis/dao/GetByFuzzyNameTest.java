@@ -10,7 +10,7 @@ import java.util.List;
 public class GetByFuzzyNameTest {
     @Test
     public void test() {
-        IStudentDao dao = new StudentDaoImpl();
+        IStudentConDao dao = new StudentConDaoImpl();
 
         List<Student> students = dao.getByFuzzyName("John");
 
