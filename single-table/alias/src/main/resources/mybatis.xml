@@ -10,20 +10,9 @@
         <package name="pers.xiaoming.mybatis.entity"/>
     </typeAliases>
 
-    <!--use default to choose default environment when mybatis start-->
-    <environments default="single_table_basic">
-        <environment id="mybatisEM">
-            <transactionManager type="JDBC"/>
-            <dataSource type="POOLED">
-                <property name="driver" value="com.mysql.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql:///mybatis"/>
-                <property name="username" value="root"/>
-                <property name="password" value="root"/>
-            </dataSource>
-        </environment>
-
+    <environments default="aliasEVM">
         <!--Define multiple environments-->
-        <environment id="single_table_basic">
+        <environment id="aliasEVM">
             <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.jdbc.Driver"/>

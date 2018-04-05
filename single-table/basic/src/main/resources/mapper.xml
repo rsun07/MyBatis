@@ -6,7 +6,7 @@
 
     <!--System will read the Class name from the typeAliases and use the Class name as Alias-->
     <!--<insert id="insertStudent" parameterType="Student">-->
-    <insert id="insertStudent">
+    <insert id="insertStudent" parameterType="pers.xiaoming.mybatis.entity.Student">
         insert into student(name, score) values (#{name},#{score})
         <!--keyProperty means the name of the key in the Student Class-->
 

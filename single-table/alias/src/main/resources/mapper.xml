@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="alias">
+
+    <!--System will read the Class name from the typeAliases and use the Class name as Alias-->
+    <!--<insert id="insertStudent" parameterType="Student">-->
+    <insert id="insertStudent">
+        insert into t_student(t_name, t_score) values (#{name},#{score})
+        <!--key property is the key in Java Class not in db-->
+        <selectKey resultType="int" keyProperty="id" order="AFTER">
+            select @@identity
+        </selectKey>
+    </insert>
+
+    <delete id="deleteStudent">
+        <!--# is just a placeholder, any name inside is ok-->
+        delete from t_student where t_id=#{id}
+    </delete>
+
+    <update id="updateStudent">
+        update t_student set t_name=#{name}, t_score=#{score} where t_id=#{id}
+    </update>
+
+
+
+    <select id="selectStudent" resultMap="StudentMapper">
+        select t_id id,t_name name,t_score score from t_student where t_id=#{id}
+    </select>
+
+    <resultMap id="StudentMapper" type="Student">
+        <id column="t_id" property="id"/>
+        <result column="t_name" property="name"/>
+        <result column="t_score" property="score"/>
+    </resultMap>
+
+
+
+    <delete id="truncateTStudentTable">
+        truncate table t_student
+    </delete>
+
+</mapper>
