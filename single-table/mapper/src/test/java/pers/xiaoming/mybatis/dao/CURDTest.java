@@ -1,6 +1,5 @@
 package pers.xiaoming.mybatis.dao;
 
-import org.apache.ibatis.session.SqlSession;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
