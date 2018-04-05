@@ -12,7 +12,7 @@
 
   <modules>
     <module>basic</module>
-    <module>alias</module>
+    <module>mapper</module>
   </modules>
 
   <artifactId>single-table</artifactId>
