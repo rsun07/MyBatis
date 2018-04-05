@@ -41,10 +41,4 @@
         <result column="t_score" property="score"/>
     </resultMap>
 
-
-
-    <delete id="truncateTStudentTable">
-        truncate table t_student
-    </delete>
-
 </mapper>

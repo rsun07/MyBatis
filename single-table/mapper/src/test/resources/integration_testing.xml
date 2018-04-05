@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
         <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="hibernate_test">
+    <test name="Initial DB">
+        <classes>
+            <class name="pers.xiaoming.mybatis.InitDB"/>
+        </classes>
+    </test>
 
     <test name="Hello World CURD test">
         <classes>

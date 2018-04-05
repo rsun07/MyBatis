@@ -5,5 +5,15 @@
 <!--Running for test driven development-->
 <!--Once finished, should be merged into integration_testing.xml-->
 <suite name="test driven development test">
+        <test name="Initial DB">
+                <classes>
+                        <class name="pers.xiaoming.mybatis.InitDB"/>
+                </classes>
+        </test>
 
+        <test name="dynamic sql test">
+                <classes>
+                        <class name="pers.xiaoming.mybatis.dao.DynamicMapperTest"/>
+                </classes>
+        </test>
 </suite>

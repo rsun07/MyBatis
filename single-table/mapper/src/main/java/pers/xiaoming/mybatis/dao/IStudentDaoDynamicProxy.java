@@ -13,6 +13,4 @@ public interface IStudentDaoDynamicProxy {
     Student selectStudent(int id);
 
     void deleteStudent(int id);
-
-    void truncateTStudentTable();
 }

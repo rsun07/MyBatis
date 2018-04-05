@@ -43,7 +43,6 @@ public class StudentDaoImpl implements IStudentDao {
         }
     }
 
-    @Override
     public void truncateTable() {
         try (SqlSession session = SessionManager.getSession()) {
             // all the CURD method backend is calling update()
