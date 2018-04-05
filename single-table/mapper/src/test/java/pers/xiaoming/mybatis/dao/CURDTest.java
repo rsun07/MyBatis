@@ -12,7 +12,6 @@ public class CURDTest {
     @BeforeClass
     public static void setup() {
         dao = new StudentDaoImpl();
-        dao.truncateTable();
     }
 
     @Test

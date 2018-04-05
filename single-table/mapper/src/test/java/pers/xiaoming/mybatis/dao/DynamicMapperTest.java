@@ -45,7 +45,6 @@ public class DynamicMapperTest {
         // the student.getId() is already updated but DB doesn't has the record
         // as the insert haven't been commit yet
         // new dao will open a session to query the db directly each time
-        Assert.assertEquals(student.getId(), InitDB.getNumOfDataGenerate() + 1);
         Student studentInDB = newDao.get(student.getId());
         Assert.assertNull(studentInDB);
 
@@ -55,8 +54,6 @@ public class DynamicMapperTest {
         // the auto generated key is in student.getId()
         // auto assigned by MyBatis
         Assert.assertNotEquals(student.getId(), id);
-
-        Assert.assertEquals(student.getId(), InitDB.getNumOfDataGenerate() + 1);
 
         validateWithGet(student);
     }
