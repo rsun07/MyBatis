@@ -40,12 +40,25 @@
         </where>
     </select>
 
-    <select id="selectDynamicSQLForeach" resultMap="StudentMapper">
+    <select id="selectDynamicSQLForeachArray" resultMap="StudentMapper">
         <!--example: select * from t_student where id in (1,2,3)-->
         select t_id,t_name,t_score from t_student
         <if test="array != null and array.length > 0">
             where t_id in
             <foreach collection="array" item="inputid" open="(" close=")" separator=",">
+                #{inputid}
+            </foreach>
+        </if>
+    </select>
+
+
+    <select id="selectDynamicSQLForeachList" resultMap="StudentMapper">
+        <!--example: select * from t_student where id in (1,2,3)-->
+        select t_id,t_name,t_score from t_student
+        <!--same as java, list.size vs array.length-->
+        <if test="list != null and list.size > 0">
+            where t_id in
+            <foreach collection="list" item="inputid" open="(" close=")" separator=",">
                 #{inputid}
             </foreach>
         </if>
