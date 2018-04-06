@@ -14,4 +14,5 @@ public interface IStudentDaoDynamicSQL {
 
     List<Student> selectDynamicSQLForeachList(List<Integer> idList);
 
+    List<Student> selectDynamicSQLForeachListGenericType(List<Student> stus);
 }

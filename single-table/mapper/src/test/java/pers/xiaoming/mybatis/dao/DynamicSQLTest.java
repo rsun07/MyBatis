@@ -136,4 +136,33 @@ public class DynamicSQLTest {
 
         };
     }
+
+    @Test(dataProvider = "test_foreach_list_generic_type_data_provider")
+    public void testDynamicSQLForeachListGenericType(List<Student> query, List<Student> expected) {
+        List<Student> studentReturn = dao.selectDynamicSQLForeachListGenericType(query);
+        Assert.assertEquals(studentReturn, expected);
+    }
+
+    @DataProvider(name = "test_foreach_list_generic_type_data_provider")
+    public Object[][] testForeachListGenericTypeDataProvider() {
+        Student idOne = new Student();
+        Student idTwo = new Student();
+
+        idOne.setId(1);
+        idTwo.setId(2);
+
+        return new Object[][] {
+
+                {Arrays.asList(idOne, idTwo), Arrays.asList(John0, John1)},
+
+                // only score
+                // like switch, no name, then go to score condition
+                {Arrays.asList(idTwo), Arrays.asList(John1)},
+
+                {Arrays.asList(), Arrays.asList(John0, John1)},
+
+                {null, Arrays.asList(John0, John1)}
+
+        };
+    }
 }
