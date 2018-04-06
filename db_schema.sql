@@ -3,11 +3,27 @@ create table student (
     name varchar(225),
     score double,
     primary key (id)
-)
+);
 
 create table t_student (
     t_id int(11) not null auto_increment,
     t_name varchar(225),
     t_score double,
     primary key (t_id)
-)
+);
+
+--For table relations:
+CREATE TABLE `City` (
+   `id` int(11) NOT NULL AUTO_INCREMENT,
+   `name` varchar(255) DEFAULT NULL,
+   PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `Person` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `city_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `foreigner_key_city_on_id` (`city_id`),
+  CONSTRAINT `foreigner_key_city_on_id` FOREIGN KEY (`city_id`) REFERENCES `City` (`id`)
+);
