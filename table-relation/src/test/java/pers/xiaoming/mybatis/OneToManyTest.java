@@ -19,6 +19,18 @@ public class OneToManyTest {
     private static OneToManyDao dao;
     private static City expectedCity;
 
+    /*
+         Pre inserted data:
+
+         INSERT INTO city (name) VALUES ("C1");
+         INSERT INTO city (name) VALUES ("C2");
+
+         INSERT INTO person (name, city_id) VALUES ("John1", 1);
+         INSERT INTO person (name, city_id) VALUES ("John2", 2);
+         INSERT INTO person (name, city_id) VALUES ("John3", 2);
+     */
+
+
     @BeforeClass
     public static void setup() {
         session = SessionManager.getSession();
@@ -37,17 +49,6 @@ public class OneToManyTest {
             session.close();
         }
     }
-
-    /*
-     Pre inserted data:
-
-     INSERT INTO city (name) VALUES ("C1");
-     INSERT INTO city (name) VALUES ("C2");
-
-     INSERT INTO person (name, city_id) VALUES ("John1", 1);
-     INSERT INTO person (name, city_id) VALUES ("John2", 2);
-     INSERT INTO person (name, city_id) VALUES ("John3", 2);
-     */
 
     @Test
     public void testSelectById() {

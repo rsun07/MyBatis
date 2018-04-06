@@ -12,7 +12,6 @@ public class EmployeeSuper {
     private Integer id;
     private String name;
     private String title;
-    private EmployeeSuper manager;
     private Set<EmployeeSuper> subordinators;
 
     public EmployeeSuper() {
@@ -25,11 +24,10 @@ public class EmployeeSuper {
         this.subordinators = new HashSet<>();
     }
 
-    public EmployeeSuper(Integer id, String name, String title, EmployeeSuper manager, Set<EmployeeSuper> subordinators) {
+    public EmployeeSuper(Integer id, String name, String title, Set<EmployeeSuper> subordinators) {
         this.id = id;
         this.name = name;
         this.title = title;
-        this.manager = manager;
         this.subordinators = subordinators;
     }
 
@@ -41,13 +39,25 @@ public class EmployeeSuper {
         return Objects.equals(id, employee.id) &&
                 Objects.equals(name, employee.name) &&
                 Objects.equals(title, employee.title) &&
-                Objects.equals(manager, employee.manager) &&
-                Objects.equals(subordinators, employee.subordinators);
+                subEquals(this.subordinators, employee.subordinators);
+    }
+
+    private boolean subEquals(Set<EmployeeSuper> origin, Set<EmployeeSuper> candidate) {
+        if (origin == candidate) return true;
+
+        if (candidate == null) return false;
+        if (origin.size() != candidate.size()) return false;
+        return origin.containsAll(candidate);
     }
 
     @Override
     public int hashCode() {
+        // if include subordinators in the hash, it will cause the diff
+        // when call contains method in HashSet();
+        // even the subordinators.size() cannot be here
 
-        return Objects.hash(id, name, title, manager, subordinators);
+        // this might because the subordinator set is initialized in different way
+        // in test origin and the db query result.
+        return Objects.hash(id, name, title);
     }
 }

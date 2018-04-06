@@ -5,29 +5,63 @@ import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import pers.xiaoming.mybatis.dao.OneToManyDao;
+import pers.xiaoming.mybatis.dao.SelfOneToManyDao;
 import pers.xiaoming.mybatis.dao.SessionManager;
 import pers.xiaoming.mybatis.entity.one_to_many.City;
 import pers.xiaoming.mybatis.entity.one_to_many.Person;
+import pers.xiaoming.mybatis.entity.self_relation.EmployeeSuper;
 
 import java.util.HashSet;
 import java.util.Set;
 
 public class SelfOneToManyTest {
     private static SqlSession session;
-    private static OneToManyDao dao;
-    private static City expectedCity;
+    private static SelfOneToManyDao dao;
+
+    private static EmployeeSuper ceo;
+
+    /*
+         Pre inserted data:
+
+         INSERT INTO employee_super (name, title) VALUES ("CEO_JOHN", "CEO");
+
+         INSERT INTO employee_super (name, title, manager_id) VALUES ("HR_HEAD_TOM", "HR_HEAD", 1);
+         INSERT INTO employee_super (name, title, manager_id) VALUES ("TECH_LEAD_MIKE", "TECH_LEAD", 1);
+
+         INSERT INTO employee_super (name, title, manager_id) VALUES ("HR_Marry", "HR", 2);
+         INSERT INTO employee_super (name, title, manager_id) VALUES ("ENGINEER_M", "ENGINEER", 3);
+         INSERT INTO employee_super (name, title, manager_id) VALUES ("DEVELOPER_A", "DEVELOPER", 3);
+
+
+     */
 
     @BeforeClass
     public static void setup() {
         session = SessionManager.getSession();
-        dao = session.getMapper(OneToManyDao.class);
+        dao = session.getMapper(SelfOneToManyDao.class);
 
-        Set<Person> residents = new HashSet<>();
-        residents.add(new Person(2,"John2"));
-        residents.add(new Person(3,"John3"));
+        ceo = new EmployeeSuper("CEO_JOHN", "CEO");
+        ceo.setId(1);
 
-        expectedCity = new City(2, "C2", residents);
+        EmployeeSuper hrHead = new EmployeeSuper("HR_HEAD_TOM", "HR_HEAD");
+        hrHead.setId(2);
+        EmployeeSuper techLead = new EmployeeSuper("TECH_LEAD_MIKE", "TECH_LEAD");
+        techLead.setId(3);
+
+        ceo.getSubordinators().add(hrHead);
+        ceo.getSubordinators().add(techLead);
+
+        EmployeeSuper hr = new EmployeeSuper("HR_Marry", "HR");
+        hr.setId(4);
+        hrHead.getSubordinators().add(hr);
+
+        EmployeeSuper engineer = new EmployeeSuper("ENGINEER_M", "ENGINEER");
+        EmployeeSuper developer = new EmployeeSuper("DEVELOPER_A", "DEVELOPER");
+        engineer.setId(5);
+        developer.setId(6);
+        techLead.getSubordinators().add(engineer);
+        techLead.getSubordinators().add(developer);
+
     }
 
     @AfterClass
@@ -37,36 +71,9 @@ public class SelfOneToManyTest {
         }
     }
 
-    /*
-     Pre inserted data:
-
-     INSERT INTO city (name) VALUES ("C1");
-     INSERT INTO city (name) VALUES ("C2");
-
-     INSERT INTO person (name, city_id) VALUES ("John1", 1);
-     INSERT INTO person (name, city_id) VALUES ("John2", 2);
-     INSERT INTO person (name, city_id) VALUES ("John3", 2);
-     */
-
     @Test
-    public void testSelectById() {
-        City actualCity = dao.selectCityById(expectedCity.getId());
-
-        Assert.assertEquals(actualCity, expectedCity);
-
-        if (session != null) {
-            session.close();
-        }
-    }
-
-    @Test
-    public void testTwoQueriesSelect() {
-        City actualCity = dao.selectCityByIdTwoQueries(expectedCity.getId());
-
-        Assert.assertEquals(actualCity, expectedCity);
-
-        if (session != null) {
-            session.close();
-        }
+    public void test() {
+        EmployeeSuper ceoReturn = dao.selectEmployeeWithSubs(1);
+        Assert.assertEquals(ceoReturn, ceo);
     }
 }
