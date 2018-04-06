@@ -5,5 +5,9 @@
 <!--Running for test driven development-->
 <!--Once finished, should be merged into integration_testing.xml-->
 <suite name="test driven development test">
-
+    <test name="self relation one to many test">
+        <classes>
+            <class name="pers.xiaoming.mybatis.SelfOneToManyTest"/>
+        </classes>
+    </test>
 </suite>

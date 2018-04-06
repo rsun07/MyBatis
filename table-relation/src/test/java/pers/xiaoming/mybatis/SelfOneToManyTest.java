@@ -13,6 +13,7 @@ import pers.xiaoming.mybatis.entity.one_to_many.Person;
 import pers.xiaoming.mybatis.entity.self_relation.EmployeeSuper;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class SelfOneToManyTest {
@@ -73,8 +74,16 @@ public class SelfOneToManyTest {
     }
 
     @Test
-    public void test() {
+    public void testSelectWithAllSubs() {
         EmployeeSuper ceoReturn = dao.selectEmployeeWithSubs(1);
         Assert.assertEquals(ceoReturn, ceo);
+    }
+
+    @Test
+    public void testSelectSubsBySuperId() {
+        List<EmployeeSuper> subList = dao.selectSubsBySuperId(1);
+        for (EmployeeSuper sub : subList) {
+            Assert.assertTrue(ceo.getSubordinators().contains(sub));
+        }
     }
 }
