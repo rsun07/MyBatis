@@ -3,6 +3,10 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
+
+    <typeAliases>
+        <package name="pers.xiaoming.mybatis.entity"/>
+    </typeAliases>
     <!--use default to choose default environment when mybatis start-->
     <environments default="testEM">
         <environment id="mybatisEM">
@@ -28,7 +32,7 @@
     </environments>
 
     <mappers>
-        <mapper resource="mapper.xml"/>
+        <mapper resource="one_to_many.xml"/>
     </mappers>
 
 </configuration>

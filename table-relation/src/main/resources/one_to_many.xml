@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="pers.xiaoming.mybatis.dao.OneToManyDao">
+
+    <resultMap id="CityMapper" type="City">
+        <id column="cid" property="id"/>
+        <result column="cname" property="name"/>
+
+        <!--maintain the one to many relationship-->
+        <collection property="residents" ofType="Person">
+            <id column="pid" property="id"/>
+            <result column="pname" property="name"/>
+        </collection>
+    </resultMap>
+
+    <select id="selectCityById" resultMap="CityMapper">
+        select c.id cid, c.name cname, p.id pid, p.name pname from city as c, person as p
+        where c.id = #{cid} and c.id = p.city_id
+    </select>
+
+</mapper>

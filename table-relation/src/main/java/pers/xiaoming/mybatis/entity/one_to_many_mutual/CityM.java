@@ -3,7 +3,7 @@ package pers.xiaoming.mybatis.entity.one_to_many_mutual;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pers.xiaoming.hibernate.entity.one_to_many.Person;
+import pers.xiaoming.mybatis.entity.one_to_many.Person;
 
 import java.util.HashSet;
 import java.util.Set;

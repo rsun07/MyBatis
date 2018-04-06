@@ -20,7 +20,7 @@ CREATE TABLE `City` (
 );
 
 CREATE TABLE `Person` (
-  `id` int(11) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   `city_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
