@@ -20,4 +20,29 @@
         where c.id = #{cid} and c.id = p.city_id
     </select>
 
+
+    <resultMap id="CityMapperTwoQueries" type="City">
+        <id column="city___id" property="id"/>
+        <result column="name" property="name"/>
+
+        <!--maintain the one to many relationship-->
+        <collection property="residents" ofType="Person"
+            select="selectPersonByCity"
+            column="city___id">
+            <!--column id is not foreigner key city_id, but the primary key in City-->
+            <!-- this key will be passed into the selectPersonByCity as parameter-->
+
+            <id column="id" property="id"/>
+            <result column="name" property="name"/>
+        </collection>
+    </resultMap>
+
+    <select id="selectCityByIdTwoQueries" resultMap="CityMapperTwoQueries">
+        select id city___id, name from city where id = #{cid}
+    </select>
+
+    <select id="selectPersonByCity" resultType="Person">
+        select id, name from person where city_id = #{cid}
+    </select>
+
 </mapper>
