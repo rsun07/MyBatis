@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="hibernate_test">
+    <test name="one to many test">
+        <classes>
+            <class name="pers.xiaoming.mybatis.OneToManyTest"/>
+        </classes>
+    </test>
+
+    <test name="self relation one to many test">
+        <classes>
+            <class name="pers.xiaoming.mybatis.SelfOneToManyTest"/>
+        </classes>
+    </test>
+</suite>

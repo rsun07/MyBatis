@@ -1,5 +1,6 @@
 package pers.xiaoming.mybatis;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.SqlSession;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;

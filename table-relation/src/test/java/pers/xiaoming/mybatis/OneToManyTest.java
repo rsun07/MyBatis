@@ -4,7 +4,6 @@ import org.apache.ibatis.session.SqlSession;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import pers.xiaoming.mybatis.dao.OneToManyDao;
 import pers.xiaoming.mybatis.dao.SessionManager;
@@ -55,10 +54,6 @@ public class OneToManyTest {
         City actualCity = dao.selectCityById(expectedCity.getId());
 
         Assert.assertEquals(actualCity, expectedCity);
-
-        if (session != null) {
-            session.close();
-        }
     }
 
     @Test
@@ -66,9 +61,5 @@ public class OneToManyTest {
         City actualCity = dao.selectCityByIdTwoQueries(expectedCity.getId());
 
         Assert.assertEquals(actualCity, expectedCity);
-
-        if (session != null) {
-            session.close();
-        }
     }
 }
