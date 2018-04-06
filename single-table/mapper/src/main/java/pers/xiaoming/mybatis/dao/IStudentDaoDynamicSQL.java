@@ -9,4 +9,6 @@ public interface IStudentDaoDynamicSQL {
     List<Student> selectDynamicSQLIf(Student student);
 
     List<Student> selectDynamicSQLChoose(Student student);
+
+    List<Student> selectDynamicSQLForeach(int[] inputIds);
 }

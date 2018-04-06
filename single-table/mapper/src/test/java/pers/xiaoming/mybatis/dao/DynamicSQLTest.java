@@ -92,4 +92,26 @@ public class DynamicSQLTest {
                 {new Student(), Arrays.asList()}
         };
     }
+
+    @Test(dataProvider = "test_foreach_data_provider")
+    public void testDynamicSQLForeach(int[] query, List<Student> expected) {
+        List<Student> studentReturn = dao.selectDynamicSQLForeach(query);
+        Assert.assertEquals(studentReturn, expected);
+    }
+
+    @DataProvider(name = "test_foreach_data_provider")
+    public Object[][] testForeachDataProvider() {
+        return new Object[][] {
+                {new int[] {1, 2}, Arrays.asList(John0, John1)},
+
+                // only score
+                // like switch, no name, then go to score condition
+                {new int[] {2}, Arrays.asList(John1)},
+
+                {new int[]{}, Arrays.asList(John0, John1)},
+
+                {null, Arrays.asList(John0, John1)}
+
+        };
+    }
 }
