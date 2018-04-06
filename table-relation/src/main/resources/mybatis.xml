@@ -33,6 +33,7 @@
 
     <mappers>
         <mapper resource="one_to_many.xml"/>
+        <mapper resource="self_one_to_many.xml"/>
     </mappers>
 
 </configuration>

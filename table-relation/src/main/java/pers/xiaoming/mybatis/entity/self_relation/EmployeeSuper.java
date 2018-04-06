@@ -8,24 +8,24 @@ import java.util.Objects;
 import java.util.Set;
 
 @Data
-public class Employee {
+public class EmployeeSuper {
     private Integer id;
     private String name;
     private String title;
-    private Employee manager;
-    private Set<Employee> subordinators;
+    private EmployeeSuper manager;
+    private Set<EmployeeSuper> subordinators;
 
-    public Employee() {
+    public EmployeeSuper() {
         this.subordinators = new HashSet<>();
     }
 
-    public Employee(String name, String title) {
+    public EmployeeSuper(String name, String title) {
         this.name = name;
         this.title = title;
         this.subordinators = new HashSet<>();
     }
 
-    public Employee(Integer id, String name, String title, Employee manager, Set<Employee> subordinators) {
+    public EmployeeSuper(Integer id, String name, String title, EmployeeSuper manager, Set<EmployeeSuper> subordinators) {
         this.id = id;
         this.name = name;
         this.title = title;
@@ -37,7 +37,7 @@ public class Employee {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Employee employee = (Employee) o;
+        EmployeeSuper employee = (EmployeeSuper) o;
         return Objects.equals(id, employee.id) &&
                 Objects.equals(name, employee.name) &&
                 Objects.equals(title, employee.title) &&
