@@ -7,7 +7,7 @@
 <suite name="test driven development test">
     <test name="self relation one to many test">
         <classes>
-            <class name="pers.xiaoming.mybatis.SelfOneToManyTest"/>
+            <class name="pers.xiaoming.mybatis.SelfManyToOneTest"/>
         </classes>
     </test>
 </suite>

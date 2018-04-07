@@ -18,11 +18,11 @@
     </resultMap>
 
     <select id="selectEmployeeWithSubs" resultMap="EmployeeSuperMapper">
-        select id, name, title from employee_super where id=#{eid}
+        select id, name, title from employee where id=#{eid}
     </select>
 
     <select id="selectSubsBySuperId" resultMap="EmployeeSuperMapper">
-        select id, name, title from employee_super where manager_id=#{super_id}
+        select id, name, title from employee where manager_id=#{super_id}
     </select>
 
 </mapper>

@@ -1,6 +1,5 @@
 package pers.xiaoming.mybatis;
 
-import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.session.SqlSession;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
@@ -8,32 +7,26 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pers.xiaoming.mybatis.dao.SelfOneToManyDao;
 import pers.xiaoming.mybatis.dao.SessionManager;
-import pers.xiaoming.mybatis.entity.one_to_many.City;
-import pers.xiaoming.mybatis.entity.one_to_many.Person;
 import pers.xiaoming.mybatis.entity.self_relation.EmployeeSuper;
 
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class SelfOneToManyTest {
     private static SqlSession session;
     private static SelfOneToManyDao dao;
-
     private static EmployeeSuper ceo;
 
     /*
          Pre inserted data:
 
-         INSERT INTO employee_super (name, title) VALUES ("CEO_JOHN", "CEO");
+         INSERT INTO employee (name, title) VALUES ("CEO_JOHN", "CEO");
 
-         INSERT INTO employee_super (name, title, manager_id) VALUES ("HR_HEAD_TOM", "HR_HEAD", 1);
-         INSERT INTO employee_super (name, title, manager_id) VALUES ("TECH_LEAD_MIKE", "TECH_LEAD", 1);
+         INSERT INTO employee (name, title, manager_id) VALUES ("HR_HEAD_TOM", "HR_HEAD", 1);
+         INSERT INTO employee (name, title, manager_id) VALUES ("TECH_LEAD_MIKE", "TECH_LEAD", 1);
 
-         INSERT INTO employee_super (name, title, manager_id) VALUES ("HR_Marry", "HR", 2);
-         INSERT INTO employee_super (name, title, manager_id) VALUES ("ENGINEER_M", "ENGINEER", 3);
-         INSERT INTO employee_super (name, title, manager_id) VALUES ("DEVELOPER_A", "DEVELOPER", 3);
-
+         INSERT INTO employee (name, title, manager_id) VALUES ("HR_Marry", "HR", 2);
+         INSERT INTO employee (name, title, manager_id) VALUES ("ENGINEER_M", "ENGINEER", 3);
+         INSERT INTO employee (name, title, manager_id) VALUES ("DEVELOPER_A", "DEVELOPER", 3);
 
      */
 
@@ -63,7 +56,6 @@ public class SelfOneToManyTest {
         developer.setId(6);
         techLead.getSubordinators().add(engineer);
         techLead.getSubordinators().add(developer);
-
     }
 
     @AfterClass
@@ -74,7 +66,7 @@ public class SelfOneToManyTest {
     }
 
     @Test
-    public void testSelectWithAllSubs() {
+    public void testSelectEmployeeWithAllSubs() {
         EmployeeSuper ceoReturn = dao.selectEmployeeWithSubs(1);
         Assert.assertEquals(ceoReturn, ceo);
     }

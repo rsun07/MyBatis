@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="pers.xiaoming.mybatis.dao.SelfManyToOneDao">
+
+    <!--recursively call the select query-->
+    <resultMap id="EmployeeSubMapper" type="EmployeeSub">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="title" property="title"/>
+
+        <!--maintain the many to one relationship-->
+        <association property="supervisor"
+                     javaType="EmployeeSub"
+                     select="selectEmployeeWithSuper"
+                     column="manager_id">
+        </association>
+    </resultMap>
+
+    <select id="selectEmployeeWithSuper" resultMap="EmployeeSubMapper">
+        select id, name, title, manager_id from employee where id=#{eid}
+    </select>
+
+</mapper>

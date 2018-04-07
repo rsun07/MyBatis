@@ -28,12 +28,12 @@ CREATE TABLE `Person` (
   CONSTRAINT `fk_city_on_id` FOREIGN KEY (`city_id`) REFERENCES `City` (`id`)
 );
 
-CREATE TABLE `employee_super` (
+CREATE TABLE `employee` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   `title` varchar(255) DEFAULT NULL,
   `manager_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `fk_employee_super_id` (`manager_id`),
-  CONSTRAINT `fk_employee_super_id` FOREIGN KEY (`manager_id`) REFERENCES `employee_super` (`id`)
+  KEY `fk_employee_id` (`manager_id`),
+  CONSTRAINT `fk_employee_id` FOREIGN KEY (`manager_id`) REFERENCES `employee` (`id`)
 );
