@@ -9,12 +9,10 @@ import java.util.Set;
 public class Store {
     private Integer id;
     private String name;
-    private String address;
     private Set<Customer> customers;
 
     public Store(String name, String address) {
         this.name = name;
-        this.address = address;
         this.customers = new HashSet<>();
     }
 }

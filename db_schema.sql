@@ -37,3 +37,24 @@ CREATE TABLE `employee` (
   KEY `fk_employee_id` (`manager_id`),
   CONSTRAINT `fk_employee_id` FOREIGN KEY (`manager_id`) REFERENCES `employee` (`id`)
 );
+
+CREATE TABLE `customer` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `store` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `customer_to_store` (
+  `customer_id` int(11) NOT NULL,
+  `store_id` int(11) NOT NULL,
+  PRIMARY KEY (`customer_id`,`store_id`),
+  KEY `key_store_id_in_c_to_s` (`store_id`),
+  CONSTRAINT `fk_customer_id` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`id`),
+  CONSTRAINT `fk_store_id` FOREIGN KEY (`store_id`) REFERENCES `store` (`id`)
+);
