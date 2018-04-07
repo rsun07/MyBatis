@@ -16,8 +16,10 @@
     </resultMap>
 
     <select id="selectCityById" resultMap="CityMapper">
-        select c.id cid, c.name cname, p.id pid, p.name pname from city as c, person as p
-        where c.id = #{cid} and c.id = p.city_id
+        select c.id cid, c.name cname, p.id pid, p.name pname
+        from city as c, person as p
+        where c.id = #{cid}
+        and c.id = p.city_id
     </select>
 
 

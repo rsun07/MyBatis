@@ -5,17 +5,30 @@
 <mapper namespace="pers.xiaoming.mybatis.dao.NToMDao">
 
     <resultMap id="CustomerMapper" type="Customer">
-        <id column="id" property="id"/>
-        <result column="name" property="name"/>
-        <collection property="stores" ofType="Store">
-            <id column="id" property="id"/>
-            <result column="name" property="name"/>
+        <id column="cid" property="id"/>
+        <result column="cname" property="name"/>
+
+        <collection property="stores" resultMap="StoreMapper">
+            <id column="sid" property="id"/>
+            <result column="sname" property="name"/>
         </collection>
     </resultMap>
 
     <select id="selectCustomerById" resultMap="CustomerMapper">
         select c.id cid, c.name cname, s.id sid, s.name sname
         from customer as c, store as s, customer_to_store as c_to_s
-        where c.id = c_to_s.customer_id and s.id = c_to_s.store_id
+        where c.id = #{query_id}
+        and c.id = c_to_s.customer_id
+        and s.id = c_to_s.store_id
     </select>
+
+    <resultMap id="StoreMapper" type="Store">
+        <id column="sid" property="id"/>
+        <result column="sname" property="name"/>
+
+        <collection property="customers" ofType="Customer">
+            <id column="cid" property="id"/>
+            <result column="cname" property="name"/>
+        </collection>
+    </resultMap>
 </mapper>

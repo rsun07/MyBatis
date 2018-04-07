@@ -35,6 +35,7 @@
         <mapper resource="one_to_many.xml"/>
         <mapper resource="self_one_to_many.xml"/>
         <mapper resource="self_many_to_one.xml"/>
+        <mapper resource="n_to_m.xml"/>
     </mappers>
 
 </configuration>
