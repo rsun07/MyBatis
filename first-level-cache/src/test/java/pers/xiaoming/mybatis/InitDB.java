@@ -1,6 +1,7 @@
 package pers.xiaoming.mybatis;
 
 import org.apache.ibatis.session.SqlSession;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import pers.xiaoming.mybatis.dao.IStudentDao;
 import pers.xiaoming.mybatis.dao.SessionManager;
@@ -47,6 +48,13 @@ public class InitDB {
                     .build();
             students.add(student);
             dao.insertStudent(student);
+        }
+    }
+
+    @AfterSuite
+    public static void close() {
+        if (session != null) {
+            session.close();
         }
     }
 }
