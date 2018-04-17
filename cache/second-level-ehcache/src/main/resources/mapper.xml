@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="pers.xiaoming.mybatis.dao.IStudentDao">
+
+    <!--Use ehcache-->
+    <cache type="org.mybatis.caches.ehcache.EhcacheCache"/>
+
+    <select id="selectById" resultType="Student">
+        select id,name,score from student where id=#{id}
+    </select>
+
+    <!--disable second level cache for this sql query only-->
+    <select id="selectByIdCopy" useCache="false" resultType="Student">
+        select id,name,score from student where id=#{id}
+    </select>
+
+    <insert id="insertStudent">
+        insert into student(name, score) values (#{name},#{score})
+        <!--key property is the key in Java Class not in db-->
+        <selectKey resultType="int" keyProperty="id" order="AFTER">
+            select @@identity
+        </selectKey>
+    </insert>
+
+    <delete id="truncateStudentTable">
+        truncate table student
+    </delete>
+</mapper>

@@ -16,6 +16,7 @@
   <modules>
     <module>first-level</module>
     <module>second-level</module>
+    <module>second-level-ehcache</module>
   </modules>
 
 
