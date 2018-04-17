@@ -11,10 +11,4 @@
         </classes>
     </test>
 
-    <!--<test name="first level cache usage">-->
-        <!--<classes>-->
-            <!--<class name="pers.xiaoming.mybatis.ProveCacheUsageTest"/>-->
-        <!--</classes>-->
-    <!--</test>-->
-
 </suite>
