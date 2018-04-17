@@ -8,8 +8,15 @@
     <version>1.0-SNAPSHOT</version>
   </parent>
 
-  <artifactId>second-level-cache</artifactId>
-  <name>second-level-cache</name>
+  <artifactId>cache</artifactId>
+  <name>cache</name>
+
+  <packaging>pom</packaging>
+
+  <modules>
+    <module>first-level</module>
+    <module>second-level</module>
+  </modules>
 
 
 </project>

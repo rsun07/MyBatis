@@ -12,8 +12,7 @@
   <modules>
     <module>single-table</module>
     <module>table-relation</module>
-    <module>first-level-cache</module>
-    <module>second-level-cache</module>
+    <module>cache</module>
   </modules>
 
   <properties>
