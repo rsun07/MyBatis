@@ -11,9 +11,9 @@
         </classes>
     </test>
 
-    <test name="prove first level cache">
+    <test name="first level cache usage">
         <classes>
-            <class name="pers.xiaoming.mybatis.ProveFirstLevelCacheTest"/>
+            <class name="pers.xiaoming.mybatis.ProveCacheUsageTest"/>
         </classes>
     </test>
 
