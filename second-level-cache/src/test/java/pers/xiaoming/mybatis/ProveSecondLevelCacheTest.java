@@ -1,7 +1,6 @@
 package pers.xiaoming.mybatis;
 
 import org.apache.ibatis.session.SqlSession;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pers.xiaoming.mybatis.dao.IStudentDao;
 import pers.xiaoming.mybatis.dao.SessionManager;
@@ -38,6 +37,51 @@ public class ProveSecondLevelCacheTest {
         SqlSession session = SessionManager.getSession();
         IStudentDao dao = session.getMapper(IStudentDao.class);
         dao.selectById(student);
+        session.close();
+    }
+
+    /*
+
+        IStudentDao.selectByIdCopy - ==>  Preparing: select id,name,score from student where id=?
+        IStudentDao.selectByIdCopy - ==> Parameters: 0(Integer)
+        IStudentDao.selectByIdCopy - <==      Total: 0
+        DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Resetting autocommit to true on JDBC Connection [com.mysql.jdbc.JDBC4Connection@6156496]
+        DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Closing JDBC Connection [com.mysql.jdbc.JDBC4Connection@6156496]
+        DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Returned connection 102065302 to pool.
+        DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Opening JDBC Connection
+        DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Checked out connection 102065302 from pool.
+        DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Setting autocommit to false on JDBC Connection [com.mysql.jdbc.JDBC4Connection@6156496]
+        IStudentDao.selectByIdCopy - ==>  Preparing: select id,name,score from student where id=?
+        IStudentDao.selectByIdCopy - ==> Parameters: 0(Integer)
+        IStudentDao.selectByIdCopy - <==      Total: 0
+        DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Resetting autocommit to true on JDBC Connection [com.mysql.jdbc.JDBC4Connection@6156496]
+        DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Closing JDBC Connection [com.mysql.jdbc.JDBC4Connection@6156496]
+        DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Returned connection 102065302 to pool.
+        DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Opening JDBC Connection
+        DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Checked out connection 102065302 from pool.
+        DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Setting autocommit to false on JDBC Connection [com.mysql.jdbc.JDBC4Connection@6156496]
+        IStudentDao.selectByIdCopy - ==>  Preparing: select id,name,score from student where id=?
+        IStudentDao.selectByIdCopy - ==> Parameters: 0(Integer)
+        IStudentDao.selectByIdCopy - <==      Total: 0
+     */
+
+    @Test
+    public void testCacheDisabled() {
+        // not an assert test
+        // see console out put
+
+        Student student = new Student();
+        student.setId(0);
+
+        for (int i = 0; i < 3; i++) {
+            runCopy(student);
+        }
+    }
+
+    private void runCopy(Student student) {
+        SqlSession session = SessionManager.getSession();
+        IStudentDao dao = session.getMapper(IStudentDao.class);
+        dao.selectByIdCopy(student);
         session.close();
     }
 }
