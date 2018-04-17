@@ -84,4 +84,45 @@ public class ProveSecondLevelCacheTest {
         dao.selectByIdCopy(student);
         session.close();
     }
+
+
+    /*
+
+        IStudentDao.selectById - ==>  Preparing: select id,name,score from student where id=?
+        IStudentDao.selectById - ==> Parameters: 0(Integer)
+        IStudentDao.selectById - <==      Total: 0
+        IStudentDao.insertStudent - ==>  Preparing: insert into student(name, score) values (?,?)
+        IStudentDao.insertStudent - ==> Parameters: NewStu(String), 90.0(Double)
+        IStudentDao.insertStudent - <==    Updates: 1
+        IStudentDao.insertStudent!selectKey - ==>  Preparing: select @@identity
+        IStudentDao.insertStudent!selectKey - ==> Parameters:
+        IStudentDao.insertStudent!selectKey - <==      Total: 1
+        IStudentDao - Cache Hit Ratio [pers.xiaoming.mybatis.dao.IStudentDao]: 0.0
+        IStudentDao.selectById - ==>  Preparing: select id,name,score from student where id=?
+        IStudentDao.selectById - ==> Parameters: 0(Integer)
+        IStudentDao.selectById - <==      Total: 0
+        DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Rolling back JDBC Connection [com.mysql.jdbc.JDBC4Connection@5ad851c9]
+        DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Resetting autocommit to true on JDBC Connection [com.mysql.jdbc.JDBC4Connection@5ad851c9]
+        DEBUG org.apache.ibatis.transaction.jdbc.JdbcTransaction - Closing JDBC Connection [com.mysql.jdbc.JDBC4Connection@5ad851c9]
+        DEBUG org.apache.ibatis.datasource.pooled.PooledDataSource - Returned connection 1524126153 to pool.
+
+     */
+    @Test
+    public void testInterrupt() {
+        // not an assert test
+        // see console out put
+
+        Student student = new Student();
+        student.setId(0);
+
+        SqlSession session = SessionManager.getSession();
+        IStudentDao dao = session.getMapper(IStudentDao.class);
+        dao.selectById(student);
+
+        Student newStudent = new Student("NewStu", 90.0);
+        dao.insertStudent(newStudent);
+
+        dao.selectById(student);
+        session.close();
+    }
 }
