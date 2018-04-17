@@ -33,7 +33,7 @@
         </selectKey>
     </insert>
 
-    <delete id="truncateTStudentTable">
+    <delete id="truncateStudentTable">
         truncate table student
     </delete>
 </mapper>
