@@ -108,7 +108,7 @@ public class ProveSecondLevelCacheTest {
 
      */
     @Test
-    public void testInterrupt() {
+    public void testFlushCache() {
         // not an assert test
         // see console out put
 

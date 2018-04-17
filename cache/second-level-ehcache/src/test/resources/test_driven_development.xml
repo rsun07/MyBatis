@@ -7,13 +7,13 @@
 <suite name="test driven development test">
     <test name="Initial DB">
         <classes>
-            <class name="pers.xiaoming.mybatis.InitDB"/>
+            <class name="pers.xiaoming.mybatis.EhcacheInitDB"/>
         </classes>
     </test>
 
     <test name="prove">
         <classes>
-            <class name="pers.xiaoming.mybatis.ProveSecondLevelCacheTest"/>
+            <class name="pers.xiaoming.mybatis.ProveEhcacheTest"/>
         </classes>
     </test>
 

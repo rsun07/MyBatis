@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class InitDB {
+public class EhcacheInitDB {
 
     private static final int NUM_OF_DATA_GENERATE = 2;
 

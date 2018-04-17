@@ -6,7 +6,7 @@ import pers.xiaoming.mybatis.dao.IStudentDao;
 import pers.xiaoming.mybatis.dao.SessionManager;
 import pers.xiaoming.mybatis.entity.Student;
 
-public class ProveSecondLevelCacheTest {
+public class ProveEhcacheTest {
 
     /*
         See the line 3, "DEBUG net.sf.ehcache.store.disk.Segment - put added 0 on heap"
@@ -112,7 +112,7 @@ public class ProveSecondLevelCacheTest {
 
      */
     @Test
-    public void testInterrupt() {
+    public void testNotFlushCache() {
         // not an assert test
         // see console out put
 
@@ -121,12 +121,12 @@ public class ProveSecondLevelCacheTest {
 
         SqlSession session = SessionManager.getSession();
         IStudentDao dao = session.getMapper(IStudentDao.class);
-        dao.selectById(student);
+        Student studentReturn = dao.selectById(student);
 
         Student newStudent = new Student("NewStu", 90.0);
         dao.insertStudent(newStudent);
 
-        dao.selectById(student);
+        studentReturn = dao.selectById(student);
         session.close();
     }
 }

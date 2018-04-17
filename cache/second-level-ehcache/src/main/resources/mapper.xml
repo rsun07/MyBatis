@@ -16,12 +16,11 @@
         select id,name,score from student where id=#{id}
     </select>
 
-    <insert id="insertStudent">
+    <!--flush cache false means don't flush cache after this sql query-->
+    <!-- works for both mybatis built in second level cache and external libraries -->
+    <!--not work for first level cache-->
+    <insert id="insertStudent" flushCache="false">
         insert into student(name, score) values (#{name},#{score})
-        <!--key property is the key in Java Class not in db-->
-        <selectKey resultType="int" keyProperty="id" order="AFTER">
-            select @@identity
-        </selectKey>
     </insert>
 
     <delete id="truncateStudentTable">

@@ -16,7 +16,7 @@
         select id,name,score from student where id=#{id}
     </select>
 
-    <insert id="insertStudent">
+    <insert id="insertStudent" flushCache="false">
         insert into student(name, score) values (#{name},#{score})
         <!--key property is the key in Java Class not in db-->
         <selectKey resultType="int" keyProperty="id" order="AFTER">
