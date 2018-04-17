@@ -14,7 +14,7 @@
         </where>
     </select>
 
-    <select id="selectByIdCopy" resultMap="Student">
+    <select id="selectByIdCopy" resultType="Student">
         select id,name,score from student where id=#{id}
         <where>
             <!--&& cannot be used, if needed, replace to &amp; -->
