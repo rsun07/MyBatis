@@ -2,6 +2,38 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper>
+<mapper namespace="pers.xiaoming.mybatis.dao.IStudentDao">
+    <select id="selectById" resultType="Student">
+        select id,name,score from student where id=#{id}
+        <where>
+            <!--&& cannot be used, if needed, replace to &amp; -->
+            <if test="name != null and name !=''">
+                <!--and cannot be omit here!-->
+                and name like '%' #{name} '%'
+            </if>
+        </where>
+    </select>
 
+    <select id="selectByIdCopy" resultMap="Student">
+        select id,name,score from student where id=#{id}
+        <where>
+            <!--&& cannot be used, if needed, replace to &amp; -->
+            <if test="name != null and name !=''">
+                <!--and cannot be omit here!-->
+                and name like '%' #{name} '%'
+            </if>
+        </where>
+    </select>
+
+    <insert id="insertStudent">
+        insert into student(name, score) values (#{name},#{score})
+        <!--key property is the key in Java Class not in db-->
+        <selectKey resultType="int" keyProperty="id" order="AFTER">
+            select @@identity
+        </selectKey>
+    </insert>
+
+    <delete id="truncateTStudentTable">
+        truncate table student
+    </delete>
 </mapper>

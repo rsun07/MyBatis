@@ -3,6 +3,12 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
+
+    <typeAliases>
+        <!--<typeAlias type="pers.xiaoming.mybatis.entity.Student" alias="Student"/>-->
+        <package name="pers.xiaoming.mybatis.entity"/>
+    </typeAliases>
+
     <!--use default to choose default environment when mybatis start-->
     <environments default="testEM">
         <environment id="testEM">
