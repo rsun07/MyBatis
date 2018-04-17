@@ -11,4 +11,10 @@
         </classes>
     </test>
 
+    <test name="prove">
+        <classes>
+            <class name="pers.xiaoming.mybatis.ProveSecondLevelCacheTest"/>
+        </classes>
+    </test>
+
 </suite>
